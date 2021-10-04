@@ -29,29 +29,48 @@ function chooseOptions(s) {
 			status.push(completed[1]);
 			toDo.push(s);
 		} else if (s === "2") {
-			console.log("\n~ Changing a to-do item ~");
-			console.log("Which to-do item would you like to change?");
-			s = prompt("> ");
-			let change = prompt("> ");
+			if (toDo.length !== 0) {
+				console.log("\n~ Changing a to-do item ~");
+				console.log("Which to-do item would you like to change?");
+				s = prompt("> ");
 
-			toDo[s - 1] = change;
-		} else if (s === "3") {
-			console.log("\n~ Completing a to-do item ~");
-			console.log("Which to-do item would you like to complete or uncomplete?");
-			s = prompt("> ");
+				if (s > toDo.length) {
+					// Do nothing
+				} else {
+					let change = prompt("> ");
 
-			if (status[s - 1] === "[complete]") {
-				status[s - 1] = completed[1];
+					toDo[s - 1] = change;
+				}
 			} else {
-				status[s - 1] = completed[0];
+				// Do nothing
+			}
+		} else if (s === "3") {
+			if (toDo.length !== 0) {
+				console.log("\n~ Completing a to-do item ~");
+				console.log(
+					"Which to-do item would you like to complete or uncomplete?"
+				);
+				s = prompt("> ");
+
+				if (status[s - 1] === "[complete]") {
+					status[s - 1] = completed[1];
+				} else {
+					status[s - 1] = completed[0];
+				}
+			} else {
+				// Do nothing
 			}
 		} else {
-			console.log("\n~ Deleting a to-do item ~");
-			console.log("Which to-do item would you like to delete?");
-			s = prompt("> ");
+			if (toDo.length !== 0) {
+				console.log("\n~ Deleting a to-do item ~");
+				console.log("Which to-do item would you like to delete?");
+				s = prompt("> ");
 
-			status.splice(s - 1, 1);
-			toDo.splice(s - 1, 1);
+				status.splice(s - 1, 1);
+				toDo.splice(s - 1, 1);
+			} else {
+				// Do nothing
+			}
 		}
 	}
 }
@@ -61,11 +80,16 @@ while (true) {
 
 	getToDoList();
 
-	console.log("~ Select an action ~");
-	console.log("[1] Create a to-do item");
-	console.log("[2] Change a to-do item");
-	console.log("[3] Complete or Uncomplete a to-do item");
-	console.log("[4] Delete a to-do item");
+	if (toDo.length !== 0) {
+		console.log("~ Select an action ~");
+		console.log("[1] Create a to-do item");
+		console.log("[2] Change a to-do item");
+		console.log("[3] Complete or Uncomplete a to-do item");
+		console.log("[4] Delete a to-do item");
+	} else {
+		console.log("~ Select an action ~");
+		console.log("[1] Create a to-do item");
+	}
 
 	let select = prompt("> ");
 
