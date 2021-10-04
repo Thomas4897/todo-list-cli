@@ -64,7 +64,7 @@ while (true) {
 	console.log("~ Select an action ~");
 	console.log("[1] Create a to-do item");
 	console.log("[2] Change a to-do item");
-	console.log("[3] Complete a to-do item");
+	console.log("[3] Complete or Uncomplete a to-do item");
 	console.log("[4] Delete a to-do item");
 
 	let select = prompt("> ");
