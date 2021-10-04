@@ -21,22 +21,30 @@ function getToDoList() {
 }
 
 function chooseOptions(s) {
-	if (s !== "1" || s !== "2") {
-	} else if (s === "1") {
-		console.log("\n~ Creating a new to-do item ~");
-		console.log("What is this to-do item called?");
-		s = prompt("> ");
-		status.push(completed[1]);
-		toDo.push(s);
-	} else {
-		console.log("\n~ Completing a to-do item ~");
-		console.log("Which to-do item would you like to complete or uncomplete?");
-		s = prompt("> ");
+	if (s === "1" || s === "2" || s === "3") {
+		if (s === "1") {
+			console.log("\n~ Creating a new to-do item ~");
+			console.log("What is this to-do item called?");
+			s = prompt("> ");
+			status.push(completed[1]);
+			toDo.push(s);
+		} else if (s === "2") {
+			console.log("\n~ Completing a to-do item ~");
+			console.log("Which to-do item would you like to complete or uncomplete?");
+			s = prompt("> ");
 
-		if (status[s - 1] === "[complete]") {
-			status[s - 1] = completed[1];
+			if (status[s - 1] === "[complete]") {
+				status[s - 1] = completed[1];
+			} else {
+				status[s - 1] = completed[0];
+			}
 		} else {
-			status[s - 1] = completed[0];
+			console.log("\n~ Deleting a to-do item ~");
+			console.log("Which to-do item would you like to delete?");
+			s = prompt("> ");
+
+			status.splice(s - 1, 1);
+			toDo.splice(s - 1, 1);
 		}
 	}
 }
@@ -48,7 +56,8 @@ while (true) {
 
 	console.log("~ Select an action ~");
 	console.log("[1] Create a to-do item");
-	console.log("[2] Complete or Uncomplete a to-do item");
+	console.log("[2] Complete a to-do item");
+	console.log("[3] Delete a to-do item");
 
 	let select = prompt("> ");
 
