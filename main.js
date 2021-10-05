@@ -66,8 +66,12 @@ function chooseOptions(s) {
 				console.log("Which to-do item would you like to delete?");
 				s = prompt("> ");
 
-				status.splice(s - 1, 1);
-				toDo.splice(s - 1, 1);
+				if (s - 1 < toDo.length) {
+					status.splice(s - 1, 1);
+					toDo.splice(s - 1, 1);
+				} else {
+					// Do nothing
+				}
 			} else {
 				// Do nothing
 			}
